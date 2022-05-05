@@ -5,7 +5,7 @@ namespace SDIZO
 	enum class MatrixCell
 	{
 		None = 0,
-		Origin = 1,
-		Destination = -1
+		Origin = -1,
+		Destination = 1
 	};
 }
