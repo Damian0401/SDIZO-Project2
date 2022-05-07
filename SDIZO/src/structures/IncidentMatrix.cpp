@@ -1,14 +1,13 @@
 #include "../../include/structures/IncidentMatrix.hpp"
-#include <iomanip>
 
-SDIZO::IncidentMatrix::IncidentMatrix(int edgeNumber, int verticeNumber, int* data)
+SDIZO::IncidentMatrix::IncidentMatrix(int edgeNumber, int vertexNumber, int* data)
 {
-	this->verticeNumber = verticeNumber;
+	this->vertexNumber = vertexNumber;
 	this->edgeNumber = edgeNumber;
 	this->edgeValues = new int[edgeNumber];
-	this->matrixHandler = new MatrixCell* [verticeNumber];
+	this->matrixHandler = new MatrixCell* [vertexNumber];
 
-	for (size_t i = 0; i < verticeNumber; i++)
+	for (size_t i = 0; i < vertexNumber; i++)
 	{
 		this->matrixHandler[i] = new MatrixCell[edgeNumber];
 
@@ -20,7 +19,6 @@ SDIZO::IncidentMatrix::IncidentMatrix(int edgeNumber, int verticeNumber, int* da
 
 	int dataIndex = 0;
 	int valueIndex = 0;
-	int verticeIndex = 0;
 	for (size_t i = 0; i < edgeNumber; i++)
 	{
 		this->matrixHandler[data[dataIndex]][i] = MatrixCell::Origin;
@@ -37,7 +35,7 @@ SDIZO::IncidentMatrix::~IncidentMatrix()
 {
 	if (matrixHandler != nullptr)
 	{
-		for (size_t i = 0; i < verticeNumber; i++)
+		for (size_t i = 0; i < this->vertexNumber; i++)
 		{
 			delete[] this->matrixHandler[i];
 		}
@@ -56,7 +54,7 @@ void SDIZO::IncidentMatrix::print(std::ostream& out)
 
 	out << std::endl << std::endl;
 
-	for (size_t i = 0; i < this->verticeNumber; i++)
+	for (size_t i = 0; i < this->vertexNumber; i++)
 	{
 		out << i << "  ";
 		for (size_t j = 0; j < this->edgeNumber; j++)

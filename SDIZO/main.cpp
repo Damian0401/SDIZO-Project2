@@ -1,5 +1,5 @@
 ﻿#include <iostream>
-#include "include/structures/IncidentMatrix.hpp"
+#include "include/SDIZO.hpp"
 
 int main()
 {
@@ -10,4 +10,10 @@ int main()
 	matrix->print(std::cout);
 
 	delete matrix;
+
+	auto list = new SDIZO::NeighborhoodList(6, 5, tab);
+
+	list->print(std::cout);
+
+	delete list;
 }

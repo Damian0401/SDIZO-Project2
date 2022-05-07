@@ -2,18 +2,19 @@
 
 #include "../utils/Enums.hpp"
 #include <iostream>
+#include <iomanip>
 
 namespace SDIZO
 {
 	class IncidentMatrix
 	{
 	public:
-		IncidentMatrix(int, int, int*);
+		IncidentMatrix(int edgeNumber, int vertexNumber, int* data);
 		~IncidentMatrix();
-		void print(std::ostream&);
+		void print(std::ostream& out);
 
 	private:
-		int verticeNumber;
+		int vertexNumber;
 		int edgeNumber;
 		int* edgeValues;
 		MatrixCell** matrixHandler;
