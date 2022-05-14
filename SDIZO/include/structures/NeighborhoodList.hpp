@@ -9,13 +9,13 @@ namespace SDIZO
 	class NeighborhoodList
 	{
 	public:
-		NeighborhoodList(int edgeNumber, int vertexNumber, int* data);
+		NeighborhoodList(size_t edgeNumber, size_t vertexNumber, size_t* data);
 		~NeighborhoodList();
 		void print(std::ostream& out);
 
 	private:
 		Edge** edges;
-		int edgeNumber;
-		int vertexNumber;
+		size_t edgeNumber;
+		size_t vertexNumber;
 	};
 }

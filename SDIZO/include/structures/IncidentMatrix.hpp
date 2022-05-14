@@ -9,14 +9,14 @@ namespace SDIZO
 	class IncidentMatrix
 	{
 	public:
-		IncidentMatrix(int edgeNumber, int vertexNumber, int* data);
+		IncidentMatrix(size_t edgeNumber, size_t vertexNumber, size_t* data);
 		~IncidentMatrix();
 		void print(std::ostream& out);
 
 	private:
-		int vertexNumber;
-		int edgeNumber;
-		int* edgeValues;
+		size_t vertexNumber;
+		size_t edgeNumber;
+		size_t* edgeValues;
 		MatrixCell** matrixHandler;
 	};
 }

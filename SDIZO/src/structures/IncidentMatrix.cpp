@@ -1,10 +1,10 @@
 #include "../../include/structures/IncidentMatrix.hpp"
 
-SDIZO::IncidentMatrix::IncidentMatrix(int edgeNumber, int vertexNumber, int* data)
+SDIZO::IncidentMatrix::IncidentMatrix(size_t edgeNumber, size_t vertexNumber, size_t* data)
 {
 	this->vertexNumber = vertexNumber;
 	this->edgeNumber = edgeNumber;
-	this->edgeValues = new int[edgeNumber];
+	this->edgeValues = new size_t[edgeNumber];
 	this->matrixHandler = new MatrixCell* [vertexNumber];
 
 	for (size_t i = 0; i < vertexNumber; i++)

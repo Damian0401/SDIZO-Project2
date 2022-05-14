@@ -1,6 +1,6 @@
 #include "..\..\include\structures\NeighborhoodList.hpp"
 
-SDIZO::NeighborhoodList::NeighborhoodList(int edgeNumber, int vertexNumber, int* data)
+SDIZO::NeighborhoodList::NeighborhoodList(size_t edgeNumber, size_t vertexNumber, size_t* data)
 {
 	this->edgeNumber = edgeNumber;
 	this->vertexNumber = vertexNumber;
@@ -12,8 +12,8 @@ SDIZO::NeighborhoodList::NeighborhoodList(int edgeNumber, int vertexNumber, int*
 	}
 
 	Edge* edge = nullptr;
-	int dataNumber = 3 * edgeNumber;
-	int currentIndex = 0;
+	size_t dataNumber = 3 * edgeNumber;
+	size_t currentIndex = 0;
 
 	while (currentIndex < dataNumber)
 	{

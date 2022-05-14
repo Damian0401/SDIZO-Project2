@@ -3,7 +3,7 @@
 
 int main()
 {
-	int tab[] = { 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 0, 4, 4, 1, 5, 3, 4, 6 };
+	size_t tab[] = { 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 0, 4, 4, 1, 5, 3, 4, 6 };
 
 	auto matrix = new SDIZO::IncidentMatrix(6, 5, tab);
 
