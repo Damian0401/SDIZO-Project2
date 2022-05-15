@@ -113,6 +113,14 @@ bool SDIZO::EdgeHeap::isEmpty()
 	return false;
 }
 
+void SDIZO::EdgeHeap::print()
+{
+	for (size_t i = 0; i < this->size; i++)
+	{
+		std::cout << this->root[i]->origin << ' ' << this->root[i]->destination << ' ' << this->root[i]->value << std::endl;
+	}
+}
+
 void SDIZO::EdgeHeap::fixUp()
 {
 	int i = this->size - 1;

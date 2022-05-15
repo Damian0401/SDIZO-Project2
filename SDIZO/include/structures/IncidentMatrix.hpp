@@ -12,6 +12,10 @@ namespace SDIZO
 		IncidentMatrix(size_t edgeNumber, size_t vertexNumber, size_t* data);
 		~IncidentMatrix();
 		void print(std::ostream& out);
+		size_t getVertexNumber();
+		size_t getEdgeNumber();
+		MatrixCell** getMatrix();
+		size_t* getValues();
 
 	private:
 		size_t vertexNumber;

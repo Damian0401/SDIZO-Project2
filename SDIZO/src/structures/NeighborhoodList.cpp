@@ -74,6 +74,7 @@ void SDIZO::NeighborhoodList::print(std::ostream& out)
 
 		if (edge == nullptr)
 		{
+			out << std::endl;
 			continue;
 		}
 
@@ -85,4 +86,14 @@ void SDIZO::NeighborhoodList::print(std::ostream& out)
 
 		out << std::endl;
 	}
+}
+
+size_t SDIZO::NeighborhoodList::getVertexNumber()
+{
+	return this->vertexNumber;
+}
+
+SDIZO::Edge** SDIZO::NeighborhoodList::getEdges()
+{
+	return this->edges;
 }

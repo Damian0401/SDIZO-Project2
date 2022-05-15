@@ -13,6 +13,8 @@ namespace SDIZO
 		void push(Edge* edge);
 		Edge* pop();
 		bool isEmpty();
+		void print();
+
 	private:
 		bool clearOnDelete;
 		size_t size;

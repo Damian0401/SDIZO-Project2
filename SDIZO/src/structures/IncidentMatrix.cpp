@@ -21,6 +21,7 @@ SDIZO::IncidentMatrix::IncidentMatrix(size_t edgeNumber, size_t vertexNumber, si
 	int valueIndex = 0;
 	for (size_t i = 0; i < edgeNumber; i++)
 	{
+		auto value = data[dataIndex];
 		this->matrixHandler[data[dataIndex]][i] = MatrixCell::Origin;
 		dataIndex++;
 		this->matrixHandler[data[dataIndex]][i] = MatrixCell::Destination;
@@ -72,4 +73,24 @@ void SDIZO::IncidentMatrix::print(std::ostream& out)
 	}
 
 	out << std::endl;
+}
+
+size_t SDIZO::IncidentMatrix::getVertexNumber()
+{
+	return this->vertexNumber;
+}
+
+size_t SDIZO::IncidentMatrix::getEdgeNumber()
+{
+	return this->edgeNumber;
+}
+
+SDIZO::MatrixCell** SDIZO::IncidentMatrix::getMatrix()
+{
+	return this->matrixHandler;
+}
+
+size_t* SDIZO::IncidentMatrix::getValues()
+{
+	return this->edgeValues;
 }
