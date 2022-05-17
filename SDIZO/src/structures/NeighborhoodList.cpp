@@ -17,6 +17,7 @@ SDIZO::NeighborhoodList::NeighborhoodList(size_t edgeNumber, size_t vertexNumber
 
 	while (currentIndex < dataNumber)
 	{
+		auto test = data[currentIndex];
 		edge = this->edges[data[currentIndex]];
 
 		if (edge == nullptr)
