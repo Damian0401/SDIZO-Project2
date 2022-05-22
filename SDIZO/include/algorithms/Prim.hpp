@@ -2,6 +2,7 @@
 #include "../structures/IncidentMatrix.hpp"
 #include "../structures/NeighborhoodList.hpp"
 #include "../structures/EdgeHeap.hpp"
+#include "../structures/Edge.hpp"
 
 namespace SDIZO
 {

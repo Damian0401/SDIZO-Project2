@@ -24,3 +24,4 @@ namespace SDIZO
 		void fixDown();
 	};
 }
+

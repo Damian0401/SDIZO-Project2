@@ -17,37 +17,13 @@ int main()
 
 	auto matrix = new SDIZO::IncidentMatrix(9, 6, tab);
 
-	matrix->print(std::cout);
-
-	auto mst1 = SDIZO::Prim::generateMst(matrix);
-
-	mst1->print(std::cout);
-
-	auto mst2 = SDIZO::Kruskal::generateMst(matrix);
-
-	mst2->print(std::cout);
-
-	delete mst1;
-
-	delete mst2;
-
 	delete matrix;
 
 	auto list = new SDIZO::NeighborhoodList(9, 6, tab);
 
-	list->print(std::cout);
+	auto path = SDIZO::Dijkstra::findShortestPath(list, 0, 4);
 
-	auto mst3 = SDIZO::Prim::generateMst(list);
-
-	mst3->print(std::cout);
-
-	auto mst4 = SDIZO::Kruskal::generateMst(list);
-
-	mst4->print(std::cout);
-
-	delete mst3;
-	
-	delete mst4;
+	path.print(std::cout);
 
 	delete list;
 }
