@@ -17,13 +17,17 @@ int main()
 
 	auto matrix = new SDIZO::IncidentMatrix(9, 6, tab);
 
+	auto pathOne = SDIZO::Dijkstra::findShortestPath(matrix, 0, 4);
+
+	pathOne.print(std::cout);
+
 	delete matrix;
 
 	auto list = new SDIZO::NeighborhoodList(9, 6, tab);
 
-	auto path = SDIZO::Dijkstra::findShortestPath(list, 0, 4);
+	auto pathTwo = SDIZO::Dijkstra::findShortestPath(list, 0, 4);
 
-	path.print(std::cout);
+	pathTwo.print(std::cout);
 
 	delete list;
 }
