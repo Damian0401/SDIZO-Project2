@@ -9,4 +9,5 @@
 #include "algorithms/Prim.hpp"
 #include "algorithms/Kruskal.hpp"
 #include "algorithms/Dijkstra.hpp"
+#include "algorithms/BellmanFord.hpp"
 #include "structures/Array.hpp"

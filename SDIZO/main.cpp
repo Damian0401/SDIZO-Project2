@@ -17,7 +17,7 @@ int main()
 
 	auto matrix = new SDIZO::IncidentMatrix(9, 6, tab);
 
-	auto pathOne = SDIZO::Dijkstra::findShortestPath(matrix, 0, 4);
+	auto pathOne = SDIZO::BellmanFord::findShortestPath(matrix, 0, 5);
 
 	pathOne.print(std::cout);
 
@@ -25,7 +25,7 @@ int main()
 
 	auto list = new SDIZO::NeighborhoodList(9, 6, tab);
 
-	auto pathTwo = SDIZO::Dijkstra::findShortestPath(list, 0, 4);
+	auto pathTwo = SDIZO::BellmanFord::findShortestPath(list, 0, 5);
 
 	pathTwo.print(std::cout);
 
