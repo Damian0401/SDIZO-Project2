@@ -25,10 +25,12 @@ SDIZO::Path SDIZO::Dijkstra::findShortestPath(IncidentMatrix* incidentMatrix, si
 
 	travelCosts[from] = 0;
 	size_t currentVertex = from;
+	size_t unvisitedVerticesNumber = vertexNumber;
 
 	auto assignNewCurrentVertex = [&]()
 	{
 		visitedVertices[currentVertex] = true;
+		unvisitedVerticesNumber--;
 		size_t sortestPath = SIZE_MAX;
 		for (size_t vertex = 0; vertex < vertexNumber; vertex++)
 		{
@@ -40,27 +42,30 @@ SDIZO::Path SDIZO::Dijkstra::findShortestPath(IncidentMatrix* incidentMatrix, si
 		}
 	};
 
-	while (visitedVertices[to] == false)
+	while (unvisitedVerticesNumber > 0)
 	{
-
 		for (size_t edge = 0; edge < edgesNumer; edge++)
 		{
-			if (matrix[currentVertex][edge] == MatrixCell::Origin)
+			if (matrix[currentVertex][edge] != MatrixCell::Origin)
 			{
-				for (size_t vertex = 0; vertex < vertexNumber; vertex++)
-				{
-					if (matrix[vertex][edge] == MatrixCell::Destination)
-					{
-						if (travelCosts[currentVertex] + values[edge] < travelCosts[vertex])
-						{
-							travelCosts[vertex] = travelCosts[currentVertex] + values[edge];
-							reachableFrom[vertex] = currentVertex;
-							reachableFor[vertex] = values[edge];
-						}
+				continue;
+			}
 
-						break;
-					}
+			for (size_t vertex = 0; vertex < vertexNumber; vertex++)
+			{
+				if (matrix[vertex][edge] != MatrixCell::Destination)
+				{
+					continue;
 				}
+
+				if (travelCosts[currentVertex] + values[edge] < travelCosts[vertex])
+				{
+					travelCosts[vertex] = travelCosts[currentVertex] + values[edge];
+					reachableFrom[vertex] = currentVertex;
+					reachableFor[vertex] = values[edge];
+				}
+
+				break;
 			}
 		}
 
@@ -101,10 +106,12 @@ SDIZO::Path SDIZO::Dijkstra::findShortestPath(NeighborhoodList* neighborhoodList
 
 	travelCosts[from] = 0;
 	size_t currentVertex = from;
+	size_t unvisitedVerticesNumber = vertexNumber;
 
 	auto assignNewCurrentVertex = [&]()
 	{
 		visitedVertices[currentVertex] = true;
+		unvisitedVerticesNumber--;
 		size_t sortestPath = SIZE_MAX;
 		for (size_t vertex = 0; vertex < vertexNumber; vertex++)
 		{
@@ -116,7 +123,7 @@ SDIZO::Path SDIZO::Dijkstra::findShortestPath(NeighborhoodList* neighborhoodList
 		}
 	};
 
-	while (visitedVertices[to] == false)
+	while (unvisitedVerticesNumber > 0)
 	{
 		Edge* edge = edges[currentVertex];
 		while (edge != nullptr)
