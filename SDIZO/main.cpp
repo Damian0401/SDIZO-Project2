@@ -3,29 +3,21 @@
 
 int main()
 {
-	size_t tab[] = {
-		0, 1, 2, 
-		0, 2, 4, 
-		1, 2, 2, 
-		1, 3, 4, 
-		1, 4, 2, 
-		2, 4, 3, 
-		3, 4, 3, 
-		3, 5, 2, 
-		4, 5, 2
-	};
+	std::string basePath = "C:/Users/szkol/Desktop/SDIZO/projekt/SDIZO-Project2/SDIZO/data/";
 
-	auto matrix = new SDIZO::IncidentMatrix(9, 6, tab);
+	SDIZO::GraphReader reader(basePath);
 
-	auto pathOne = SDIZO::BellmanFord::findShortestPath(matrix, 0, 5);
+	auto matrix = reader.readMatrixGraph("graph-1.txt");
+
+	auto pathOne = SDIZO::BellmanFord::findShortestPath(matrix, 0, 4);
 
 	pathOne.print(std::cout);
 
 	delete matrix;
 
-	auto list = new SDIZO::NeighborhoodList(9, 6, tab);
+	auto list = reader.readListGraph("graph-1.txt");
 
-	auto pathTwo = SDIZO::BellmanFord::findShortestPath(list, 0, 5);
+	auto pathTwo = SDIZO::BellmanFord::findShortestPath(list, 0, 4);
 
 	pathTwo.print(std::cout);
 
