@@ -1,25 +1,20 @@
 ﻿#include <iostream>
+#include <random>
 #include "include/SDIZO.hpp"
 
 int main()
 {
 	std::string basePath = "C:/Users/szkol/Desktop/SDIZO/projekt/SDIZO-Project2/SDIZO/data/";
 
-	SDIZO::GraphReader reader(basePath);
+	auto rawData = SDIZO::GraphGenerator::generate(1, 4);
 
-	auto matrix = reader.readMatrixGraph("graph-1.txt");
+	auto matrix = new SDIZO::IncidentMatrix(rawData.edgeNumber, rawData.vertexNumber, rawData.data);
 
-	auto pathOne = SDIZO::BellmanFord::findShortestPath(matrix, 0, 4);
+	matrix->print(std::cout);
 
-	pathOne.print(std::cout);
+	auto list = new SDIZO::NeighborhoodList(rawData.edgeNumber, rawData.vertexNumber, rawData.data);
 
-	delete matrix;
+	list->print(std::cout);
 
-	auto list = reader.readListGraph("graph-1.txt");
-
-	auto pathTwo = SDIZO::BellmanFord::findShortestPath(list, 0, 4);
-
-	pathTwo.print(std::cout);
-
-	delete list;
+	delete[] rawData.data;
 }

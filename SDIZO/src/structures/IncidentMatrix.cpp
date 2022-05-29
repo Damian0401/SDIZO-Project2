@@ -46,11 +46,11 @@ SDIZO::IncidentMatrix::~IncidentMatrix()
 
 void SDIZO::IncidentMatrix::print(std::ostream& out)
 {
-	out << "    ";
+	out << "   ";
 
 	for (size_t i = 0; i < this->edgeNumber; i++)
 	{
-		out << i << "    ";
+		out << std::setw(2) << i << "   ";
 	}
 
 	out << std::endl << std::endl;

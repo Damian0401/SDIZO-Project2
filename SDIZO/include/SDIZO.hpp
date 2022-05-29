@@ -12,3 +12,4 @@
 #include "algorithms/BellmanFord.hpp"
 #include "utils/Enums.hpp"
 #include "utils/GraphReader.hpp"
+#include "utils/GraphGenerator.hpp"
