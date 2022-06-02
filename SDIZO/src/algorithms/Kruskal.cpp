@@ -2,6 +2,7 @@
 
 SDIZO::IncidentMatrix* SDIZO::Kruskal::generateMst(IncidentMatrix* incidentMatrix)
 {
+	// Get necessary stuff from the graph 
 	size_t vertexNumber = incidentMatrix->getVertexNumber();
 	size_t edgeNumber = incidentMatrix->getEdgeNumber();
 	size_t* values = incidentMatrix->getValues();
@@ -11,6 +12,7 @@ SDIZO::IncidentMatrix* SDIZO::Kruskal::generateMst(IncidentMatrix* incidentMatri
 	size_t resultIndex = 0;
 	EdgeHeap* heap = new EdgeHeap();
 
+	// Assign unique ids to every tree
 	size_t* treeIds = new size_t[vertexNumber];
 	for (size_t i = 0; i < vertexNumber; i++)
 	{
@@ -18,10 +20,12 @@ SDIZO::IncidentMatrix* SDIZO::Kruskal::generateMst(IncidentMatrix* incidentMatri
 	}
 
 	Edge* buffor = nullptr;
+	// Iterate through all edges
 	for (size_t edge = 0; edge < edgeNumber; edge++)
 	{
 		buffor = new Edge(-1, -1, values[edge]);
 
+		// Iterate through all vertices and add them to the heap
 		for (size_t vertex = 0; vertex < vertexNumber; vertex++)
 		{
 			if (matrix[vertex][edge] == MatrixCell::Origin)
@@ -42,12 +46,15 @@ SDIZO::IncidentMatrix* SDIZO::Kruskal::generateMst(IncidentMatrix* incidentMatri
 	{
 		buffor = heap->pop();
 
+		// Check if tree ids are different 
 		if (treeIds[buffor->origin] != treeIds[buffor->destination])
 		{
+			// Add edge to the result
 			resultBuffor[3 * resultIndex] = buffor->origin;
 			resultBuffor[3 * resultIndex + 1] = buffor->destination;
 			resultBuffor[3 * resultIndex + 2] = buffor->value;
 
+			// Correct tree ids
 			int oldTreeId = treeIds[buffor->origin];
 			int newTreeId = treeIds[buffor->destination];
 			for (size_t id = 0; id < vertexNumber; id++)
@@ -62,14 +69,17 @@ SDIZO::IncidentMatrix* SDIZO::Kruskal::generateMst(IncidentMatrix* incidentMatri
 		}
 	}
 
+	// Create result tree
 	IncidentMatrix* result = new IncidentMatrix(vertexNumber - 1, vertexNumber, resultBuffor);
 	delete[] resultBuffor;
 	delete heap;
+
 	return result;
 }
 
 SDIZO::NeighborhoodList* SDIZO::Kruskal::generateMst(NeighborhoodList* neighborhoodList)
 {
+	// Get necessary stuff from the graph 
 	size_t vertexNumber = neighborhoodList->getVertexNumber();
 	size_t resultSize = (vertexNumber - 1) * 3;
 	size_t* resultBuffor = new size_t[resultSize];
@@ -77,6 +87,7 @@ SDIZO::NeighborhoodList* SDIZO::Kruskal::generateMst(NeighborhoodList* neighborh
 	Edge** edges = neighborhoodList->getEdges();
 	EdgeHeap* heap = new EdgeHeap(false);
 
+	// Assign unique ids to every tree
 	size_t* treeIds = new size_t[vertexNumber];
 	for (size_t i = 0; i < vertexNumber; i++)
 	{
@@ -84,6 +95,7 @@ SDIZO::NeighborhoodList* SDIZO::Kruskal::generateMst(NeighborhoodList* neighborh
 	}
 
 	Edge* buffor = nullptr;
+	// Iterate through all vertices and add them to the heap
 	for (size_t vertex = 0; vertex < vertexNumber; vertex++)
 	{
 		buffor = edges[vertex];
@@ -99,12 +111,15 @@ SDIZO::NeighborhoodList* SDIZO::Kruskal::generateMst(NeighborhoodList* neighborh
 	{
 		buffor = heap->pop();
 
+		// Check if tree ids are different 
 		if (treeIds[buffor->origin] != treeIds[buffor->destination])
 		{
+			// Add edge to the result
 			resultBuffor[3 * resultIndex] = buffor->origin;
 			resultBuffor[3 * resultIndex + 1] = buffor->destination;
 			resultBuffor[3 * resultIndex + 2] = buffor->value;
 
+			// Correct tree ids
 			int oldTreeId = treeIds[buffor->origin];
 			int newTreeId = treeIds[buffor->destination];
 			for (size_t id = 0; id < vertexNumber; id++)
@@ -117,8 +132,10 @@ SDIZO::NeighborhoodList* SDIZO::Kruskal::generateMst(NeighborhoodList* neighborh
 		}
 	}
 
+	// Create result tree
 	NeighborhoodList* result = new NeighborhoodList(vertexNumber - 1, vertexNumber, resultBuffor);
 	delete[] resultBuffor;
 	delete heap;
+
 	return result;
 }
