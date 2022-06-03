@@ -53,7 +53,7 @@ void SDIZO::IncidentMatrix::print(std::ostream& out)
 		out << std::setw(2) << i << "   ";
 	}
 
-	out << std::endl << std::endl;
+	out << std::endl;
 
 	for (size_t i = 0; i < this->vertexNumber; i++)
 	{
@@ -65,7 +65,7 @@ void SDIZO::IncidentMatrix::print(std::ostream& out)
 		out << std::endl;
 	}
 
-	out << std::endl << "v  ";
+	out  << "v  ";
 
 	for (size_t i = 0; i < this->edgeNumber; i++)
 	{
