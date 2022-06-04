@@ -37,9 +37,9 @@ SDIZO::IncidentMatrix* SDIZO::Kruskal::generateMst(IncidentMatrix* incidentMatri
 			{
 				buffor->destination = vertex;
 			}
-
-			heap->push(buffor);
 		}
+
+		heap->push(buffor);
 	}
 
 	while (!heap->isEmpty())

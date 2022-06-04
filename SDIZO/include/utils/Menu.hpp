@@ -20,7 +20,7 @@ namespace SDIZO
 		GraphReader reader;
 		GraphGenerator generator;
 
-		void minimumSpinningTreeSubmenu();
+		void minimumSpanningTreeSubmenu();
 		void shortestPathSubmenu();
 		void readGraphFromFile(IncidentMatrix** matrix, NeighborhoodList** list);
 		void generateRandomGraph(IncidentMatrix** matrix, NeighborhoodList** list);

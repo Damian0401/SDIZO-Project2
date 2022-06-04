@@ -6,8 +6,9 @@ SDIZO::Menu::Menu(std::string basePath)
 void SDIZO::Menu::run()
 {
 	std::cout << "Select submenu:" << std::endl;
-	std::cout << "1 <- Minimum spinning tree" << std::endl;
+	std::cout << "1 <- Minimum spanning tree" << std::endl;
 	std::cout << "2 <- The shortest path" << std::endl;
+	std::cout << "3 <- exit" << std::endl;
 
 	size_t selectedOption;
 	std::cin >> selectedOption;
@@ -15,18 +16,17 @@ void SDIZO::Menu::run()
 	switch (selectedOption)
 	{
 	case 1:
-		this->minimumSpinningTreeSubmenu();
+		this->minimumSpanningTreeSubmenu();
 		break;
 	case 2:
 		this->shortestPathSubmenu();
 		break;
 	default:
-		std::cout << "Invalid input" << std::endl;
 		break;
 	}
 }
 
-void SDIZO::Menu::minimumSpinningTreeSubmenu()
+void SDIZO::Menu::minimumSpanningTreeSubmenu()
 {
 	IncidentMatrix* matrix = nullptr;
 	NeighborhoodList* list = nullptr;
@@ -100,15 +100,7 @@ void SDIZO::Menu::shortestPathSubmenu()
 
 void SDIZO::Menu::readGraphFromFile(IncidentMatrix** matrix, NeighborhoodList** list)
 {
-	if ((*matrix) != nullptr)
-	{
-		delete matrix;
-	}
-
-	if ((*list) != nullptr)	
-	{
-		delete list;
-	}
+	this->tryDeleteGraph(*matrix, *list);
 
 	std::cout << "Enter filename: ";
 	std::string fileName;
@@ -120,15 +112,7 @@ void SDIZO::Menu::readGraphFromFile(IncidentMatrix** matrix, NeighborhoodList** 
 
 void SDIZO::Menu::generateRandomGraph(IncidentMatrix** matrix, NeighborhoodList** list)
 {
-	if ((*matrix) != nullptr)
-	{
-		delete matrix;
-	}
-
-	if ((*list) != nullptr)
-	{
-		delete list;
-	}
+	this->tryDeleteGraph(*matrix, *list);
 
 	std::cout << "Enter number of vertices: ";
 	size_t vertexNumber;
@@ -138,21 +122,26 @@ void SDIZO::Menu::generateRandomGraph(IncidentMatrix** matrix, NeighborhoodList*
 	float density;
 	std::cin >> density;
 
-	std::cout << "Enter max value : ";
+	if (density > 1)
+	{
+		density = 1;
+	}
+
+	std::cout << "Enter max value: ";
 	size_t maxValue;
 	std::cin >> maxValue;
 
 	auto rawData = this->generator.generate(density, vertexNumber, maxValue);
 
-	(*matrix) = new IncidentMatrix(rawData.edgeNumber, rawData.edgeNumber, rawData.data);
-	(*list) = new NeighborhoodList(rawData.edgeNumber, rawData.edgeNumber, rawData.data);
+	(*matrix) = new IncidentMatrix(rawData.edgeNumber, rawData.vertexNumber, rawData.data);
+	(*list) = new NeighborhoodList(rawData.edgeNumber, rawData.vertexNumber, rawData.data);
 
 	delete rawData.data;
 }
 
 size_t SDIZO::Menu::printSubmenuOptions(std::string firstAlgorithm, std::string secondAlgorithm)
 {
-	std::cout << std::string('#', 50) << std::endl;
+	std::cout << std::string(50, '#') << std::endl;
 	std::cout << "1 <- Read graph from file" << std::endl;
 	std::cout << "2 <- Generate random graph" << std::endl;
 	std::cout << "3 <- Print graph" << std::endl;

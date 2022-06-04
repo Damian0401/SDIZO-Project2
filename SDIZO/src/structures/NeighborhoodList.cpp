@@ -69,7 +69,7 @@ void SDIZO::NeighborhoodList::print(std::ostream& out)
 
 	for (size_t i = 0; i < this->vertexNumber; i++)
 	{
-		out << i << " --> ";
+		out << std::setw(2) << i << " --> ";
 
 		edge = this->edges[i];
 
