@@ -3,6 +3,7 @@
 #include <iostream>
 #include "GraphReader.hpp"
 #include "GraphGenerator.hpp"
+#include "Tests.hpp"
 #include "../algorithms/BellmanFord.hpp"
 #include "../algorithms/Dijkstra.hpp"
 #include "../algorithms/Kruskal.hpp"
@@ -13,12 +14,13 @@ namespace SDIZO
 	class Menu
 	{
 	public:
-		Menu(std::string basePath);
+		Menu(const std::string& basePath);
 		void run();
 
 	private:
 		GraphReader reader;
 		GraphGenerator generator;
+		Tests tests;
 
 		void minimumSpanningTreeSubmenu();
 		void shortestPathSubmenu();
@@ -31,5 +33,6 @@ namespace SDIZO
 		void runDijkstraAlgorithm(IncidentMatrix* matrix, NeighborhoodList* list);
 		void runBellmanFordAlgorithm(IncidentMatrix* matrix, NeighborhoodList* list);
 		void tryDeleteGraph(IncidentMatrix* matrix, NeighborhoodList* list);
+		void runTests();
 	};
 }

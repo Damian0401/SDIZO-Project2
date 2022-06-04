@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <exception>
 
 namespace SDIZO
 {
@@ -19,6 +20,9 @@ namespace SDIZO
 		virtual bool removeBack();
 		virtual bool removeAt(const size_t& index);
 		virtual void print(std::ostream& out);
+		virtual T getFront();
+		virtual T getBack();
+		virtual T getAt(const size_t& index);
 		virtual size_t getSize();
 	private:
 		T* head;

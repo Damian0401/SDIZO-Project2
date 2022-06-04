@@ -1,28 +1,38 @@
 #include "..\..\include\utils\Menu.hpp"
 
-SDIZO::Menu::Menu(std::string basePath)
-	: reader(basePath) { }
+SDIZO::Menu::Menu(const std::string& basePath)
+	: reader(basePath + "data/"), tests(basePath + "results/", TimerPrecision::Nanoseconds, 20) { }
 
 void SDIZO::Menu::run()
 {
-	std::cout << "Select submenu:" << std::endl;
-	std::cout << "1 <- Minimum spanning tree" << std::endl;
-	std::cout << "2 <- The shortest path" << std::endl;
-	std::cout << "3 <- exit" << std::endl;
+	bool isRunning = true;
 
-	size_t selectedOption;
-	std::cin >> selectedOption;
-
-	switch (selectedOption)
+	while (isRunning)
 	{
-	case 1:
-		this->minimumSpanningTreeSubmenu();
-		break;
-	case 2:
-		this->shortestPathSubmenu();
-		break;
-	default:
-		break;
+		std::cout << "Select submenu:" << std::endl;
+		std::cout << "1 <- Minimum spanning tree" << std::endl;
+		std::cout << "2 <- The shortest path" << std::endl;
+		std::cout << "3 <- Automatic tests" << std::endl;
+		std::cout << "4 <- exit" << std::endl;
+
+		size_t selectedOption;
+		std::cin >> selectedOption;
+
+		switch (selectedOption)
+		{
+		case 1:
+			this->minimumSpanningTreeSubmenu();
+			break;
+		case 2:
+			this->shortestPathSubmenu();
+			break;
+		case 3:
+			this->runTests();
+			break;
+		default:
+			isRunning = false;
+			break;
+		}
 	}
 }
 
@@ -54,9 +64,12 @@ void SDIZO::Menu::minimumSpanningTreeSubmenu()
 		case 5:
 			this->runKruskalAlgorithm(matrix, list);
 			break;
-		default:
+		case 6:
 			tryDeleteGraph(matrix, list);
 			isRunning = false;
+			break;
+		default:
+			std::cout << "Invalid input" << std::endl;
 			break;
 		}
 	}
@@ -246,4 +259,20 @@ void SDIZO::Menu::tryDeleteGraph(IncidentMatrix* matrix, NeighborhoodList* list)
 	{
 		delete list;
 	}
+}
+
+void SDIZO::Menu::runTests()
+{
+	Array<size_t> vertices;
+
+	std::cout << "Enter 10 numbers" << std::endl;
+
+	size_t number;
+	for (size_t i = 0; i < 10; i++)
+	{
+		std::cin >> number;
+		vertices.addBack(number);
+	}
+
+	this->tests.run(vertices);
 }

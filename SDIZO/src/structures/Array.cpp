@@ -221,10 +221,43 @@ void SDIZO::Array<T>::print(std::ostream& out)
 }
 
 template<typename T>
+T SDIZO::Array<T>::getFront()
+{
+	if (this->size == 0)
+	{
+		throw std::runtime_error("Size is 0");
+	}
+
+	return this->head[0];
+}
+
+template<typename T>
+T SDIZO::Array<T>::getBack()
+{
+	if (this->size == 0)
+	{
+		throw std::runtime_error("Size is 0");
+	}
+
+	return this->head[this->size - 1];
+}
+
+template<typename T>
+T SDIZO::Array<T>::getAt(const size_t& index)
+{
+	if (index >= this->size)
+	{
+		throw std::runtime_error("Index out of range");
+	}
+
+	return this->head[index];
+}
+
+template<typename T>
 size_t SDIZO::Array<T>::getSize()
 {
 	return this->size;
 }
 
-// The only one data type necessary in this project
 template class SDIZO::Array<SDIZO::PathEdge>;
+template class SDIZO::Array<size_t>;

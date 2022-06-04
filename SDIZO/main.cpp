@@ -6,7 +6,7 @@ int main()
 {
 	using namespace SDIZO;
 
-	std::string basePath = "C:/Users/szkol/Desktop/SDIZO/projekt/SDIZO-Project2/SDIZO/data/";
+	std::string basePath = "C:/Users/szkol/Desktop/SDIZO/projekt/SDIZO-Project2/SDIZO/";
 
 	Menu menu(basePath);
 
