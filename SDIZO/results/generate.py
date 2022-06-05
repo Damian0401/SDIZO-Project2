@@ -9,7 +9,7 @@ def mst_matrix(data):
             filtered_data = value[value['density'] == density]
             x = filtered_data['vertices']
             y = filtered_data['time']
-            plt.plot(x, y, label = key.removesuffix('-matrix-results.csv') + ' ' + str(density) + '%')
+            plt.plot(x, y, label = key.removesuffix('-matrix-results.csv') + ' ' + str(density) + '%', marker='.')
 
     plt.xlabel('vertices')
     plt.ylabel('time [us]')
@@ -26,7 +26,7 @@ def mst_list(data):
             filtered_data = value[value['density'] == density]
             x = filtered_data['vertices']
             y = filtered_data['time']
-            plt.plot(x, y, label = key.removesuffix('-list-results.csv') + ' ' + str(density) + '%')
+            plt.plot(x, y, label = key.removesuffix('-list-results.csv') + ' ' + str(density) + '%', marker='.')
 
     plt.xlabel('vertices')
     plt.ylabel('time [us]')
@@ -43,7 +43,7 @@ def mst_density(data):
             filtered_data = value[value['density'] == density]
             x = filtered_data['vertices']
             y = filtered_data['time']
-            plt.plot(x, y, label = key.removesuffix('-results.csv'))
+            plt.plot(x, y, label = key.removesuffix('-results.csv'), marker='.')
         plt.xlabel('vertices')
         plt.ylabel('time [us]')
         plt.title(f'MST density: {density}%')
@@ -59,7 +59,7 @@ def tsp_matrix(data):
             filtered_data = value[value['density'] == density]
             x = filtered_data['vertices']
             y = filtered_data['time']
-            plt.plot(x, y, label = key.removesuffix('-matrix-results.csv') + ' ' + str(density) + '%')
+            plt.plot(x, y, label = key.removesuffix('-matrix-results.csv') + ' ' + str(density) + '%', marker='.')
 
     plt.xlabel('vertices')
     plt.ylabel('time [us]')
@@ -76,7 +76,7 @@ def tsp_list(data):
             filtered_data = value[value['density'] == density]
             x = filtered_data['vertices']
             y = filtered_data['time']
-            plt.plot(x, y, label = key.removesuffix('-list-results.csv') + ' ' + str(density) + '%')
+            plt.plot(x, y, label = key.removesuffix('-list-results.csv') + ' ' + str(density) + '%', marker='.')
 
     plt.xlabel('vertices')
     plt.ylabel('time [us]')
@@ -93,7 +93,7 @@ def tsp_density(data):
             filtered_data = value[value['density'] == density]
             x = filtered_data['vertices']
             y = filtered_data['time']
-            plt.plot(x, y, label = key.removesuffix('-results.csv'))
+            plt.plot(x, y, label = key.removesuffix('-results.csv'), marker='.')
         plt.xlabel('vertices')
         plt.ylabel('time [us]')
         plt.title(f'TSP density: {density}%')
