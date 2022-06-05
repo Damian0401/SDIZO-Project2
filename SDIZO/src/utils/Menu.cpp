@@ -1,7 +1,7 @@
 #include "..\..\include\utils\Menu.hpp"
 
 SDIZO::Menu::Menu(const std::string& basePath)
-	: reader(basePath + "data/"), tests(basePath + "results/", TimerPrecision::Nanoseconds, 20) { }
+	: reader(basePath + "data/"), tests(basePath + "results/", TimerPrecision::Microseconds, 20) { }
 
 void SDIZO::Menu::run()
 {

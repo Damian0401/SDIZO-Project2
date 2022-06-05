@@ -7,14 +7,14 @@ void SDIZO::Tests::run(Array<size_t>& vertices)
 {
 	float densities[] = { 0.25, 0.50, 0.75, 0.99 };
 
-	std::ofstream primMatrixResult(this->basePath + "prim-matrix-results.txt");
-	std::ofstream primListResult(this->basePath + "prim-list-results.txt");
-	std::ofstream kruskalMatrixResult(this->basePath + "kruskal-matrix-results.txt");
-	std::ofstream kruskalListResult(this->basePath + "kruskal-list-results.txt");
-	std::ofstream dijkstraMatrixResult(this->basePath + "dijkstra-matrix-results.txt");
-	std::ofstream dijkstraListResult(this->basePath + "dijkstra-list-result.txt");
-	std::ofstream bellmanFordMatrixResult(this->basePath + "bellman-ford-matrix-results.txt");
-	std::ofstream bellmanFordListResult(this->basePath + "bellman-ford-list-results.txt");
+	std::ofstream primMatrixResult(this->basePath + "prim-matrix-results.csv");
+	std::ofstream primListResult(this->basePath + "prim-list-results.csv");
+	std::ofstream kruskalMatrixResult(this->basePath + "kruskal-matrix-results.csv");
+	std::ofstream kruskalListResult(this->basePath + "kruskal-list-results.csv");
+	std::ofstream dijkstraMatrixResult(this->basePath + "dijkstra-matrix-results.csv");
+	std::ofstream dijkstraListResult(this->basePath + "dijkstra-list-results.csv");
+	std::ofstream bellmanFordMatrixResult(this->basePath + "bellman-ford-matrix-results.csv");
+	std::ofstream bellmanFordListResult(this->basePath + "bellman-ford-list-results.csv");
 
 	std::string format = "vertices;density;time";
 
