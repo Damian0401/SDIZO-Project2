@@ -23,9 +23,11 @@ SDIZO::Path SDIZO::BellmanFord::findShortestPath(IncidentMatrix* incidentMatrix,
 
 	travelCosts[from] = 0;
 
+	bool anyChange = false;
 	// Iterate V - 1 times
-	for (size_t i = 0; i < vertexNumber - 1; i++)
+	for (size_t i = 0; (i < vertexNumber - 1) && !anyChange; i++)
 	{
+		anyChange = false;
 		// Iterate through all vertices
 		for (size_t origin = 0; origin < vertexNumber; origin++)
 		{
@@ -54,6 +56,7 @@ SDIZO::Path SDIZO::BellmanFord::findShortestPath(IncidentMatrix* incidentMatrix,
 					// Check if current travel cost is lower than old one
 					if (travelCosts[origin] + values[edge] < travelCosts[destination])
 					{
+						anyChange = true;
 						travelCosts[destination] = travelCosts[origin] + values[edge];
 						reachableFrom[destination] = origin;
 						reachableFor[destination] = values[edge];
@@ -99,9 +102,12 @@ SDIZO::Path SDIZO::BellmanFord::findShortestPath(NeighborhoodList* neighborhoodL
 	travelCosts[from] = 0;
 
 	Edge* edge = nullptr;
+	bool anyChange = false;
 	// Iterate V - 1 times
-	for (size_t i = 0; i < vertexNumber - 1; i++)
+	for (size_t i = 0; i < (vertexNumber - 1) && !anyChange; i++)
 	{
+		anyChange = false;
+
 		// Iterate through all vertices
 		for (size_t j = 0; j < vertexNumber; j++)
 		{
@@ -117,6 +123,7 @@ SDIZO::Path SDIZO::BellmanFord::findShortestPath(NeighborhoodList* neighborhoodL
 				// Check if current travel cost is lower than old one
 				if (travelCosts[j] + edge->value < travelCosts[edge->destination])
 				{
+					anyChange = true;
 					travelCosts[edge->destination] = travelCosts[j] + edge->value;
 					reachableFrom[edge->destination] = j;
 					reachableFor[edge->destination] = edge->value;
