@@ -8,11 +8,13 @@ SDIZO::RawGraphData SDIZO::GraphGenerator::generate(float density, size_t vertex
 	size_t dataSize = 3 * edgeNumber;
 	size_t* data = new size_t[dataSize];
 
+	// Create random device
 	std::random_device seed;
 	std::mt19937 gen(seed());
 	std::uniform_int_distribution<size_t> values(1, maxValue);
 	std::uniform_int_distribution<size_t> vertices(0, vertexNumber - 1);
 
+	// Create array to store information about connections
 	bool** existConnection = new bool*[edgeNumber];
 	for (size_t i = 0; i < edgeNumber; i++)
 	{
@@ -23,6 +25,7 @@ SDIZO::RawGraphData SDIZO::GraphGenerator::generate(float density, size_t vertex
 		}
 	}
 
+	// Create ring to connect all vertices
 	for (size_t i = 0; i < minumumEdgeNumber - 1; i++)
 	{
 		data[3 * i] = i;
@@ -38,6 +41,7 @@ SDIZO::RawGraphData SDIZO::GraphGenerator::generate(float density, size_t vertex
 	existConnection[minumumEdgeNumber - 1][0] = true;
 	existConnection[0][minumumEdgeNumber - 1] = true;
 
+	// Generete rest of edges
 	size_t origin;
 	size_t destination;
 	for (size_t i = minumumEdgeNumber; i < edgeNumber; i++)
@@ -59,12 +63,14 @@ SDIZO::RawGraphData SDIZO::GraphGenerator::generate(float density, size_t vertex
 		existConnection[destination][origin] = true;
 	}
 
+	// Delete array
 	for (size_t i = 0; i < edgeNumber; i++)
 	{
 		delete[] existConnection[i];
 	}
 	delete[] existConnection;
 
+	// Create output data
 	RawGraphData result;
 	result.data = data;
 	result.vertexNumber = vertexNumber;

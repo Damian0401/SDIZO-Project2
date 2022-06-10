@@ -18,6 +18,12 @@ SDIZO::Path SDIZO::BellmanFord::findShortestPath(IncidentMatrix* incidentMatrix,
 
 	// Create array to store previous vertex
 	size_t* reachableFrom = new size_t[vertexNumber];
+
+	for (size_t vertex = 0; vertex < vertexNumber; vertex++)
+	{
+		reachableFrom[vertex] = SIZE_MAX;
+	}
+
 	// Create array to store single cost
 	size_t* reachableFor = new size_t[vertexNumber];
 
@@ -73,6 +79,12 @@ SDIZO::Path SDIZO::BellmanFord::findShortestPath(IncidentMatrix* incidentMatrix,
 	// Create the shortest path 
 	while (currentVertex != from)
 	{
+		// Check if connection exists
+		if (currentVertex == SIZE_MAX)
+		{
+			return Path();
+		}
+
 		result.addEdge(PathEdge(reachableFor[currentVertex], reachableFrom[currentVertex], currentVertex));
 		currentVertex = reachableFrom[currentVertex];
 	}
@@ -96,6 +108,12 @@ SDIZO::Path SDIZO::BellmanFord::findShortestPath(NeighborhoodList* neighborhoodL
 
 	// Create array to store previous vertex
 	size_t* reachableFrom = new size_t[vertexNumber];
+
+	for (size_t vertex = 0; vertex < vertexNumber; vertex++)
+	{
+		reachableFrom[vertex] = SIZE_MAX;
+	}
+
 	// Create array to store single cost
 	size_t* reachableFor = new size_t[vertexNumber];
 
@@ -139,6 +157,12 @@ SDIZO::Path SDIZO::BellmanFord::findShortestPath(NeighborhoodList* neighborhoodL
 	// Create the shortest path 
 	while (currentVertex != from)
 	{
+		// Check if connection exists
+		if (currentVertex == SIZE_MAX)
+		{
+			return Path();
+		}
+
 		result.addEdge(PathEdge(reachableFor[currentVertex], reachableFrom[currentVertex], currentVertex));
 		currentVertex = reachableFrom[currentVertex];
 	}
