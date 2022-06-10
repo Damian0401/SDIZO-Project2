@@ -29,9 +29,9 @@ SDIZO::Path SDIZO::BellmanFord::findShortestPath(IncidentMatrix* incidentMatrix,
 
 	travelCosts[from] = 0;
 
-	bool anyChange = false;
+	bool anyChange = true;
 	// Iterate V - 1 times
-	for (size_t i = 0; (i < vertexNumber - 1) && !anyChange; i++)
+	for (size_t i = 0; (i < vertexNumber - 1) && anyChange; i++)
 	{
 		anyChange = false;
 		// Iterate through all vertices
@@ -120,9 +120,9 @@ SDIZO::Path SDIZO::BellmanFord::findShortestPath(NeighborhoodList* neighborhoodL
 	travelCosts[from] = 0;
 
 	Edge* edge = nullptr;
-	bool anyChange = false;
+	bool anyChange = true;
 	// Iterate V - 1 times
-	for (size_t i = 0; i < (vertexNumber - 1) && !anyChange; i++)
+	for (size_t i = 0; i < (vertexNumber - 1) && anyChange; i++)
 	{
 		anyChange = false;
 
